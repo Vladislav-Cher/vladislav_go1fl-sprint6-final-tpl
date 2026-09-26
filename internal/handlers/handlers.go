@@ -13,10 +13,7 @@ import (
 )
 
 func GetHTML(w http.ResponseWriter, r *http.Request) {
-	dir := "/home/vladislav/dev/vladislav_go1fl-sprint6-final-tpl/"
-	htmlPath := filepath.Join(dir, "index.html")
-
-	data, err := os.ReadFile(htmlPath)
+	data, err := os.ReadFile("index.html")
 	if err != nil {
 		fmt.Println(err, err)
 		http.Error(w, "Внутренняя ошибка сервера, GetHTML", http.StatusInternalServerError)
@@ -78,7 +75,7 @@ func Upload(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Header().Set("Content-Type", "text/html")
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte(convertedData))
 }
